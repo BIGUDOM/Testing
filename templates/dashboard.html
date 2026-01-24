@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Business Essential - Dashboard Page</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+       <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='media/app logo.png') }}"/>
+       <!-- <link rel="stylesheet" href="/static/css/dashboard.css"> -->
+    </head>
+<body>
+    <!-- Top Navbar -->
+    <header class="dashboard-header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='media/app logo.png') }}" alt="Business Essential logo"/>
+            <span>Business Essential</span>
+        </div>
+        
+        <button class="menu-toggle" id="menuToggle">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+        <div class="header-actions">
+            <button class="icon-btn">    
+                <i class="fa-solid fa-bell"></i>
+            </button>
+            <div class="user">
+                  <img id="dashboard-profile-pic"
+                 src="{{ url_for('static', filename='media/3_my_pic.jpg') }}"
+                 alt="Profile Picture"
+                 class="profile-pic">
+                <span>Big Udom1</span>
+            </div>
+        </div>
+    </header>
+
+   
+    <!-- Main Layout -->
+    <div class="dashboard">
+        <!-- Sidebar -->
+         <div id="sidebarOverlay" class="sidebar-overlay"></div>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <a href="/dashboard" class="active">
+                <i class="fa-solid fa-chart-line"></i> Dashboard
+            </a>
+            <a href="/invoices">
+                <i class="fa-solid fa-file-invoice"></i> Invoices
+            </a>
+            <a href="/invoice-draft">
+                <i class='fa-brands fa-firstdraft'></i> Draft
+            </a> 
+            <a href="/clients">
+                <i class="fa-solid fa-users"></i> Clients
+            </a>
+            <a href="/payments">
+                <i class="fa-solid fa-credit-card"></i> Payments
+            </a>
+            <a href="/profile">
+                <i class="fa-solid fa-user"></i> Profile
+            </a>
+            <a href="/settings">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+    
+            <a href="/logout" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </aside>
+
+        <!-- Content -->
+        <main class="content">
+         <div class="greeting">
+             <h1 id="greeting-text">Welcome back, <span id="username-placeholder">Big Udom1</span> 👋</h1>
+        </div>
+
+
+
+        <p class="subtitle">Here’s an overview of your invoicing activity.</p>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="card">
+                    <h3>Total Invoices</h3>
+                    <p>50</p>
+                </div>
+                <div class="card">
+                    <h3>Paid</h3>
+                    <p class="paid">20</p>
+                </div>
+                <div class="card">
+                    <h3>Pending</h3>
+                    <p class="pending">30</p>
+                </div>
+                <div class="card">
+                    <h3>Total Revenue</h3>
+                    <p>#100,100,100</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="actions">
+                <a id="show-invoice-btn" href="/create/invoice" class="btn primary">
+                    <i class="fa-solid fa-plus"></i> Create Invoice
+                </a>
+                <a href="/invoices" class="btn secondary">
+                    <i class="fa-solid fa-eye"></i> View Invoices
+                </a>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+
+</body>
+
+</html>
