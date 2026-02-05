@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Essential - Register Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --success: #4cc9f0;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --gradient-bg: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --gradient-btn: linear-gradient(90deg, var(--primary), var(--accent));
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-radius: 16px;
+            --orbit-size: 120px;
+        }
+
+        body.signup-page {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-bg);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            color: var(--dark);
+        }
+
+        body.signup-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .logo {
+            text-align: center;
+            padding: 35px 20px 25px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .logo-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: var(--orbit-size);
+            height: var(--orbit-size);
+            border: 2px solid rgba(67, 97, 238, 0.2);
+            border-radius: 50%;
+            animation: orbit 15s linear infinite;
+            z-index: -1;
+        }
+
+        .logo-orbit::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        @keyframes orbit {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .app-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            position: relative;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+        }
+
+        .app-logo svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 8px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .wrapper {
+            padding: 30px;
+            position: relative;
+            min-height: 450px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .wrapper:not(.active) {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+        }
+
+        .wrapper.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+            position: relative;
+            z-index: 10;
+        }
+
+        form h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        form h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background: var(--gradient-btn);
+            border-radius: 2px;
+        }
+
+        form h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        form p {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 22px;
+            height: 52px;
+        }
+
+        .input-box .happy {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--gray);
+            z-index: 2;
+            width: 20px;
+            display: flex;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .input-box .happy svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .input-box .joy {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 0 20px 0 45px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--dark);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .input-box .joy:focus {
+            outline: none;
+            border-color: rgba(67, 97, 238, 0.3);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+        }
+
+        .input-box .joy:focus + .happy,
+        .input-box .joy:not(:placeholder-shown) + .happy {
+            color: var(--primary);
+        }
+
+        /* Special styling for file input */
+        #profile_picture_input {
+            position: absolute;
+            left: 45px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: calc(100% - 65px);
+            height: 40px;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .input-box label[for="profile_picture_input"] {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 0 20px 0 45px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .input-box label[for="profile_picture_input"]:hover {
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary);
+        }
+
+        #profile-preview {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #profile-preview-img {
+            max-width: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            margin: 0 auto;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 50px;
+            background: var(--gradient-btn);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+            position: relative;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .btn.secondary {
+            background: linear-gradient(90deg, #6c757d, #495057);
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+        }
+
+        .btn.secondary:hover {
+            box-shadow: 0 6px 20px rgba(108, 117, 125, 0.45);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.55);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .register-link p {
+            color: var(--gray);
+            font-size: 15px;
+        }
+
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .register-link a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .register-link a:hover::after {
+            width: 100%;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 3px;
+            margin: 25px 0 35px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-btn);
+            border-radius: 3px;
+            width: 25%;
+            transition: width 0.5s ease;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gray);
+            position: relative;
+        }
+
+        .step-dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 15px;
+                border-radius: 20px;
+            }
+            
+            .logo {
+                padding: 25px 15px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            .wrapper {
+                padding: 25px 20px;
+                min-height: 420px;
+            }
+            
+            form h2 {
+                font-size: 1.6rem;
+            }
+            
+            .input-box {
+                height: 48px;
+                margin-bottom: 20px;
+            }
+            
+            .btn {
+                padding: 13px;
+            }
+            
+            #profile-preview-img {
+                max-width: 100px;
+            }
+            
+            .progress-container {
+                margin: 20px 0 30px;
+            }
+        }
+
+        
+/* Spinner inside buttons */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ================= MODAL OVERLAY ================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+}
+
+/* Show */
+.modal-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* ================= MODAL CARD ================= */
+.modal-card {
+    background: #ffffff;
+    border-radius: 14px;
+     padding: 32px 28px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+
+    box-shadow:
+        0 -10px 40px rgba(0, 0, 0, 0.15);
+
+    transform: translateY(100%);
+    opacity: 1;
+    transition:
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Slide-up app motion */
+.modal-overlay.show .modal-card {
+    transform: translateY(0);
+}
+
+/* ================= DRAG INDICATOR ================= */
+.modal-card::before {
+    content: "";
+    width: 42px;
+    height: 4px;
+    background: #cbd5f5;
+    border-radius: 999px;
+    display: block;
+    margin: 0 auto 18px;
+}
+
+/* ================= ICON ================= */
+.modal-icon {
+    width: 58px;
+    height: 58px;
+    margin: 4px auto 16px;
+    color: #16a34a;
+    animation: popIcon 0.4s ease-out;
+}
+
+.modal-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ================= TEXT ================= */
+.modal-card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.modal-card p {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 22px;
+}
+
+/* ================= BUTTON ================= */
+.modal-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #1558B0, #2563eb);
+    color: #fff;
+    cursor: pointer;
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.2s ease;
+}
+
+.modal-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 10px 25px rgba(21, 88, 176, 0.35);
+}
+
+/* ================= CLOSE BUTTON ================= */
+.close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 1.3rem;
+    color: #64748b;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close:hover {
+    color: #0f172a;
+}
+
+/* ================= ERROR VARIANT ================= */
+.modal-card.error .modal-icon {
+    color: #dc2626;
+}
+
+.modal-card.error .modal-btn {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+    </style>
+</head>
+<body class="signup-page">
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <div class="logo-orbit"></div>
+            <div class="app-logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                    <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                    <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+            <h1>Business Essential</h1>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="step-indicator">
+            <div class="step-dot active" id="step1"></div>
+            <div class="step-dot" id="step2"></div>
+            <div class="step-dot" id="step3"></div>
+            <div class="step-dot" id="step4"></div>
+        </div>
+        
+        <div class="wrapper active" id="userbase">
+            <form action="" id="userForm">
+                <h2>Secure Your Account</h2>
+                <div class="input-box">
+                    <input class="joy" type="text" name="username" placeholder="Username" id="username_input" required>
+                    <label for="username_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="email" name="email" placeholder="Email" id="email_input" required>
+                    <label for="email_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22 6 12 13 2 6"></polyline>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="password" name="password" placeholder="Password" id="password_input" required>
+                    <label for="password_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password_input" required>
+                    <label for="confirm_password_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="7 13 12 18 17 13"></polyline>
+                            <polyline points="7 9 12 14 17 9"></polyline>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="security_question" placeholder="Security Question" id="security_question_input" required>
+                    <label for="security_question_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="security_answer" placeholder="Security Answer" id="security_answer_input" required>
+                    <label for="security_answer_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </label>
+                </div>
+    
+                <button type="submit" class="btn" id="userNextButton">Create Account</button>
+
+                <div class="register-link">
+                    <p>Have an account already? <a href="/login" id="SigninButton">Sign in</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="wrapper" id="verify">
+            <form action="" id="verifyForm">
+                <h2>Verify Your Account</h2>
+                <p>We have sent a 6-digit verification code to your email.</p>
+                <div class="input-box">
+                    <input class="joy" type="text" name="verification_code" placeholder="Enter Verification Code" id="verification_code_input" required maxlength="6">
+                    <label for="verification_code_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22 6 12 13 2 6"></polyline>
+                        </svg>
+                    </label>
+                </div>
+                <button type="submit" class="btn" id="verifyButton">Verify Account</button>
+                <button type="button" class="btn secondary" id="resend_code_btn">Resend Code</button>
+            </form>
+        </div>
+
+        <div class="wrapper" id="custbase">
+            <form action="" id="custForm">
+                <h2>Create Your Profile</h2>
+                <div class="input-box">
+                    <input class="joy" type="text" name="company_name" placeholder="Profile Name" id="profile_name_input" required>
+                    <label for="profile_name_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="full_name" placeholder="Full Name" id="full_name_input" required>
+                    <label for="full_name_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="address" placeholder="Address" id="address_input" required>
+                    <label for="address_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="country" placeholder="Country" id="country_input" required>
+                    <label for="country_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="currency" placeholder="Preferred Currency" id="currency_input" required>
+                    <label for="currency_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="date" name="dob" id="dob_input" required>
+                    <label for="dob_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </label>
+                </div>
+                <button type="submit" class="btn" id="custNextButton">Continue</button>
+            </form>
+        </div>
+
+        <div class="wrapper" id="completecust">
+            <form action="" id="completecustform" enctype="multipart/form-data">
+                <h2>Complete Your Profile</h2>
+                <div class="input-box">
+                    <input class="joy" type="text" name="phone_number" placeholder="Phone Number" id="phone_number_input" required>
+                    <label for="phone_number_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="email" name="alternate_email" placeholder="Alternate Email" id="alternate_email_input">
+                    <label for="alternate_email_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22 6 12 13 2 6"></polyline>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="url" name="website" placeholder="Website URL" id="website_input">
+                    <label for="website_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <label for="profile_picture_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="10" r="3"></circle>
+                            <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path>
+                        </svg>
+                        Upload Profile Picture
+                    </label>
+                    <input type="file" id="profile_picture_input" name="profile_picture" accept="image/*">
+                    <div id="profile-preview">
+                        <img id="profile-preview-img" src="" alt="Preview">
+                    </div>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="bio" placeholder="Short Bio (Optional)" id="bio_input">
+                    <label for="bio_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </label>
+                </div>
+                <button type="submit" class="btn" id="completeCustButton">Complete Registration</button>
+                
+            </form>
+            <button class="btn" id="enableFaceID">Enable Face ID</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const userbaseWrapper = document.getElementById('userbase');
+            const verifyWrapper = document.getElementById('verify');
+            const custbaseWrapper = document.getElementById('custbase');
+            const completecustWrapper = document.getElementById('completecust');
+            const progressBar = document.getElementById('progressBar');
+            const stepDots = document.querySelectorAll('.step-dot');
+            const particlesContainer = document.getElementById('particles');
+            
+            // Form elements
+            const userForm = document.getElementById('userForm');
+            const verifyForm = document.getElementById('verifyForm');
+            const custForm = document.getElementById('custForm');
+            const completeForm = document.getElementById('completecustform');
+            const resendCodeBtn = document.getElementById('resend_code_btn');
+            const profilePictureInput = document.getElementById('profile_picture_input');
+            const profilePreviewImg = document.getElementById('profile-preview-img');
+            
+            // Form switching functions
+            function showForm(formId, step) {
+                // Hide all forms
+                userbaseWrapper.classList.remove('active');
+                verifyWrapper.classList.remove('active');
+                custbaseWrapper.classList.remove('active');
+                completecustWrapper.classList.remove('active');
+                
+                // Show selected form
+                document.getElementById(formId).classList.add('active');
+                
+                // Update progress bar
+                updateProgress(step);
+            }
+            
+            function updateProgress(step) {
+                // Update progress bar width
+                const progressWidth = (step - 1) * 33.33;
+                progressBar.style.width = `${progressWidth}%`;
+                
+                // Update step dots
+                stepDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index < step);
+                });
+            }
+            
+           
+            // Profile picture preview
+            profilePictureInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        profilePreviewImg.src = event.target.result;
+                        profilePreviewImg.style.display = 'block';
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Create floating particles
+            function createParticles() {
+                const particleCount = 25;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random size between 3px and 10px
+                    const size = Math.random() * 7 + 3;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    // Random position
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Random animation duration and delay
+                    const duration = Math.random() * 10 + 15;
+                    const delay = Math.random() * 5;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    // Random opacity
+                    particle.style.opacity = `${Math.random() * 0.5 + 0.1}`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Initialize
+            createParticles();
+            
+            // Initialize progress bar
+            updateProgress(1);
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/auth/register.js') }}"></script>
+</body>
+</html>
+

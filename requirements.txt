@@ -1,3 +1,6 @@
-flask
-
+FLASK
+flask-cors
+mysql-connector-python
+python-dotenv
 gunicorn
+werkzeug

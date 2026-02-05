@@ -1,122 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <title>Business Essential - Dashboard Page</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-       <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='media/app logo.png') }}"/>
-       <!-- <link rel="stylesheet" href="/static/css/dashboard.css"> -->
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Business Essential - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
 <body>
-    <!-- Top Navbar -->
+    <div class="particles" id="particles"></div>
+    <div class="refresh-indicator" id="refreshIndicator">
+        <svg viewBox="0 0 24 24">
+            <path d="M2 12a9 9 0 0 1 9-9c2.38 0 4.55.97 6.12 2.5l-2.62 2.62A5.5 5.5 0 1 0 18 12h2a7.5 7.5 0 0 1-7.93 7.5l-1.49-1.49A9.01 9.01 0 0 1 2 12z"></path>
+        </svg>
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 16l-6-6h12l-6 6z"></path>
+        </svg>
+    </div>
+    
     <header class="dashboard-header">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='media/app logo.png') }}" alt="Business Essential logo"/>
-            <span>Business Essential</span>
+        <div class="header-title">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/>
+            </svg>
+            Business Essential
         </div>
-        
-        <button class="menu-toggle" id="menuToggle">
-    <i class="fa-solid fa-bars"></i>
-</button>
-
         <div class="header-actions">
-            <button class="icon-btn">    
-                <i class="fa-solid fa-bell"></i>
-            </button>
-            <div class="user">
-                  <img id="dashboard-profile-pic"
-                 src="{{ url_for('static', filename='media/3_my_pic.jpg') }}"
+            <div class="icons">
+                <button class="icon-btn" id="helpBtn" aria-label="Help">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <div class="new" id="notifyCount" data-count="{{ unread_count }}">0</div>
+                <button class="icon-btn active" id="notifyBtn" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8a6 6 0 0 0-12 0v7a4 4 0 0 0 8 0v-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M14 16a2 2 0 0 1-4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M2 15a10 10 0 0 0 20 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="user-menu">
+                <div class="profile-pic">      <img id="dashboard-profile-pic"
+                 src="{{ profile_picture_url or url_for('static', filename='images/default-profile.png') }}"
                  alt="Profile Picture"
-                 class="profile-pic">
-                <span>Big Udom1</span>
+                 class="profile-pic"></div>
+                <span class="user-name">{{ username }}</span>
             </div>
         </div>
     </header>
 
-   
-    <!-- Main Layout -->
     <div class="dashboard">
-        <!-- Sidebar -->
-         <div id="sidebarOverlay" class="sidebar-overlay"></div>
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-            <a href="/dashboard" class="active">
-                <i class="fa-solid fa-chart-line"></i> Dashboard
-            </a>
-            <a href="/invoices">
-                <i class="fa-solid fa-file-invoice"></i> Invoices
-            </a>
-            <a href="/invoice-draft">
-                <i class='fa-brands fa-firstdraft'></i> Draft
-            </a> 
-            <a href="/clients">
-                <i class="fa-solid fa-users"></i> Clients
-            </a>
-            <a href="/payments">
-                <i class="fa-solid fa-credit-card"></i> Payments
-            </a>
-            <a href="/profile">
-                <i class="fa-solid fa-user"></i> Profile
-            </a>
-            <a href="/settings">
-                <i class="fa-solid fa-gear"></i> Settings
-            </a>
-    
-            <a href="/logout" class="logout">
-                <i class="fa-solid fa-right-from-bracket"></i> Logout
-            </a>
-        </aside>
-
-        <!-- Content -->
         <main class="content">
-         <div class="greeting">
-             <h1 id="greeting-text">Welcome back, <span id="username-placeholder">Big Udom1</span> 👋</h1>
-        </div>
+            <div class="greeting">
+                <h1 id="greeting-text">Good afternoon, {{profilename }} 👋</h1>
+            </div>
+            <p class="subtitle">Here's an overview of your invoicing activity today</p>
 
-
-
-        <p class="subtitle">Here’s an overview of your invoicing activity.</p>
-
-            <!-- Stats -->
-            <div class="stats">
-                <div class="card">
-                    <h3>Total Invoices</h3>
-                    <p>50</p>
+            <div class="account-balance">
+                <div class="balance-header">
+                    <div class="balance-title">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Available Balance
+                    </div>
+                    <div id="eye" class="icon-btn" style="width: 32px; height: 32px; background: rgba(0,0,0,0.03);">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Paid</h3>
-                    <p class="paid">20</p>
+                <div class="balance-amount">
+                    <a href="#">{{currency_symbol}}{{wallet_balance}}
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="m12 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
                 </div>
-                <div class="card">
-                    <h3>Pending</h3>
-                    <p class="pending">30</p>
-                </div>
-                <div class="card">
-                    <h3>Total Revenue</h3>
-                    <p>#100,100,100</p>
+                <div class="balance-footer">
+                    <a href="/transactions" class="transactions-link">
+                        Transactions History
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="m12 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <button class="add-btn">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="5" y1="12" x2="19" y2="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Add Money
+                    </button>
                 </div>
             </div>
 
-            <!-- Quick Actions -->
-            <div class="actions">
-                <a id="show-invoice-btn" href="/create/invoice" class="btn primary">
-                    <i class="fa-solid fa-plus"></i> Create Invoice
-                </a>
-                <a href="/invoices" class="btn secondary">
-                    <i class="fa-solid fa-eye"></i> View Invoices
-                </a>
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="6" y1="8" x2="18" y2="8" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="6" y1="12" x2="18" y2="12" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="6" y1="16" x2="14" y2="16" fill="none" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Overview
+                    </h2>
+                </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Invoices</div>
+                        <div class="stat-value"> {{total_invoices}} </div>
+                    </div>
+                    <div class="stat-card paid">
+                        <div class="stat-label">Paid</div>
+                        <div class="stat-value"> {{paid_invoices}} </div>
+                    </div>
+                    <div class="stat-card pending">
+                        <div class="stat-label">Pending</div>
+                        <div class="stat-value"> {{pending_invoices}} </div>
+                    </div>
+                    <div class="stat-card revenue">
+                        <div class="stat-label">Revenue</div>
+                        <div class="stat-value"> {{currency_symbol}}{{total_revenue}} </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="actions-title">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="5" y1="12" x2="19" y2="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Quick Actions
+                    </h2>
+                </div>
+                <div class="actions">
+                    <button class="btn primary" id="show-invoice-btn">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="5" y1="12" x2="19" y2="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Create Invoice
+                    </button>
+                    <a href="/invoices" class="btn secondary">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="16" y1="13" x2="8" y2="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="16" y1="17" x2="8" y2="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <polyline points="10 9 9 9 8 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        View Invoices
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2v6m0 10v6M4.93 4.93l4.24 4.24m8.49-8.49l4.24 4.24M1.5 12h6m10 0h6M4.93 19.07l4.24-4.24m8.49 8.49l4.24-4.24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Recent Activity
+                    </h2>
+                    <a href="#" class="view-all">
+                        View All
+                        <svg viewBox="0 0 24 24">
+                            <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="m12 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon invoice">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="16" y1="13" x2="8" y2="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="16" y1="17" x2="8" y2="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <polyline points="10 9 9 9 8 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New invoice created</div>
+                            <div class="activity-time">Client: TechSolutions Inc.</div>
+                        </div>
+                        <div class="activity-amount pending">$1,250.00</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon payment">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Payment received</div>
+                            <div class="activity-time">From: DesignHub Studio</div>
+                        </div>
+                        <div class="activity-amount paid">$875.50</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon client">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New client added</div>
+                            <div class="activity-time">Global Innovations Ltd.</div>
+                        </div>
+                        <div class="activity-amount">$0.00</div>
+                    </div>
+                </div>
             </div>
         </main>
+
+        <nav class="bottom-nav">
+            <a href="/dashboard" class="nav-item active">
+                <svg viewBox="0 0 24 24">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="9 22 9 12 15 12 15 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="/invoices" class="nav-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="16" y1="13" x2="8" y2="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="16" y1="17" x2="8" y2="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <polyline points="10 9 9 9 8 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Invoices</span>
+            </a>
+            <a href="/invoice-draft" class="nav-item">
+                <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="9" y1="9" x2="15" y2="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="15" y1="9" x2="9" y2="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Drafts</span>
+            </a>
+            <a href="/clients" class="nav-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Clients</span>
+            </a>
+            <a href="/payments" class="nav-item">
+                <svg viewBox="0 0 24 24">
+                    <rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="6" y1="8" x2="18" y2="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="12" x2="18" y2="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="14" y2="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Payments</span>
+            </a>
+            <a href="/me" class="nav-item">
+                <svg viewBox="0 0 24 24">
+                    <rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="6" y1="8" x2="18" y2="8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="12" x2="18" y2="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="14" y2="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Me</span>
+            </a>
+        </nav>
     </div>
 
 
-    <script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
-
+    <script src="/static/js/dashboard.js"></script>
 </body>
-
 </html>
+

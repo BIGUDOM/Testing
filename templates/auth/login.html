@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Essential - Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body class="signin-page">
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <div class="logo-orbit"></div>
+            <div class="app-logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                    <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                    <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+            <h1>Business Essential</h1>
+        </div>
+        
+        <div class="wrapper active" id="login">
+            <form action="" id="loginForm">
+                <h2>Access Your Receipts</h2>
+                <div class="input-box">
+                    <input class="joy" type="text" name="username" placeholder="Username" id="username_input" required>
+                    <label for="username_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="password" name="password" placeholder="Password" id="password_input" required>
+                    <label for="password_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </label>
+                </div>
+
+                <div class="remember-forget">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="#" id="resetpsbtn">Forget password?</a>
+                </div>
+
+                <button type="submit" class="btn loginbtn" id="SigninButton">Sign In</button>
+
+                <nav class="bottom-nav">
+                    <a href="/register" class="nav-item active" id="signup-link">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 8a6 6 0 0 1-12 0"></path>
+                            <path d="M12 2v8"></path>
+                            <path d="M21 12h-9a3 3 0 0 0-3 3v6"></path>
+                            <path d="M3 12h9a3 3 0 0 1 3 3v6"></path>
+                        </svg>
+                        Sign up
+                    </a>
+                    <a href="#" id="faceid-login" class="nav-item">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                            <path d="M12 8v2"></path>
+                            <path d="M8 12h2"></path>
+                            <path d="M14 12h2"></path>
+                        </svg>
+                        Face ID
+                    </a>
+                </nav>
+            </form>
+        </div>
+        
+        <div class="wrapper" id="reset-password">
+            <form action="" id="resetForm">
+                <h1>Reset Password</h1>
+                <p>Answer your security question to reset your password</p>
+                <div class="input-box">
+                    <input class="joy" type="text" name="security_question" placeholder="What was your first pet's name?" id="security_question_input" readonly>
+                    <label for="security_question_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="text" name="security_answer" placeholder="Security Answer" id="security_answer_input" required>
+                    <label for="security_answer_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </label>
+                </div>
+                <button type="submit" class="btn" id="resetPassword">Reset Password</button>
+            </form>
+        </div>
+
+        <div class="wrapper" id="save-password">
+            <form action="" id="passwordForm">
+                <h1>Reset Password</h1>
+                <p>We have sent a 6-digit verification code to your email.</p>
+                <div class="input-box">
+                    <input class="joy" type="text" name="verification_code" placeholder="Enter Verification Code" id="verification_code_input" required>
+                    <label for="verification_code_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22 6 12 13 2 6"></polyline>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="password" name="password" placeholder="New Password" id="password_input_reset" required>
+                    <label for="password_input_reset" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </label>
+                </div>
+                <div class="input-box">
+                    <input class="joy" type="password" name="confirm_password" placeholder="Confirm Password" id="confirm_password_input" required>
+                    <label for="confirm_password_input" class="happy">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            <polyline points="7 13 12 18 17 13"></polyline>
+                            <polyline points="7 9 12 14 17 9"></polyline>
+                        </svg>
+                    </label>
+                </div>
+                <button type="submit" class="btn" id="savePassword">Save Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // DOM Elements
+            const loginWrapper = document.getElementById('login');
+            const resetWrapper = document.getElementById('reset-password');
+            const saveWrapper = document.getElementById('save-password');
+            const resetBtn = document.getElementById('resetpsbtn');
+            const signupLink = document.getElementById('signup-link');
+            const faceIdBtn = document.getElementById('faceid-login');
+            const resetForm = document.getElementById('resetForm');
+            const passwordForm = document.getElementById('passwordForm');
+            const loginForm = document.getElementById('loginForm');
+            const particlesContainer = document.getElementById('particles');
+            
+            // Form switching functions
+            function showForm(formId) {
+                // Hide all forms
+                loginWrapper.classList.remove('active');
+                resetWrapper.classList.remove('active');
+                saveWrapper.classList.remove('active');
+                
+                // Show selected form
+                document.getElementById(formId).classList.add('active');
+            }
+            
+            // Event Listeners
+
+    
+
+
+            
+            // Create floating particles
+            function createParticles() {
+                const particleCount = 20;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random size between 3px and 10px
+                    const size = Math.random() * 7 + 3;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    // Random position
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Random animation duration and delay
+                    const duration = Math.random() * 10 + 15;
+                    const delay = Math.random() * 5;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    // Random opacity
+                    particle.style.opacity = `${Math.random() * 0.5 + 0.1}`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Initialize
+            createParticles();
+      
+        });
+    </script>
+    <script src="{{ url_for('static', filename='js/auth/login.js') }}"></script>
+</body>
+</html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -8,7 +8,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>Business Essential</title>
        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <!-- <link rel="stylesheet" href="/static/css/style.css"> -->
 
     </head>
     <body>
@@ -16,13 +15,13 @@
             <h1>Business Essential</h1>
             <h2>Get Paid Faster for Your Gigs</h2>
             <p>Create invoices, send reminders, and track payments - all in one place.</p>
-            <a href="/dashboard">Create Your First Invoice</a>
+            <a href="{{ url_for('register_page') }}">Create Your First Invoice</a>
         </header>
 
         <section class="problem">
             <div class="container">
                 <div class="container-h1">
-                    <h1>Why choose <span>Business Essential?</span></h1>
+                    <h1>Why choose <span>Business Essential/span>?</h1>
                 </div>
                 <div class="problem">
                     <p>Clients often delay payments or forget to pay invoices.</p>
@@ -214,6 +213,526 @@
         </footer>
 
     </body>
-</html>
+</html> -->
 
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business Essential — Smart Invoicing</title>
+
+    Google Font
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    Font Awesome
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    Main CSS
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+================= NAVBAR =================
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <span>Business Essential</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="{{ url_for('login_page') }}" class="btn ghost">Login</a>
+            <a href="{{ url_for('register_page') }}" class="btn primary">Get Started</a>
+        </div>
+    </div>
+</nav>
+
+================= HERO =================
+<header class="hero">
+    <div class="hero-content">
+        <span class="badge">Smart Invoicing Platform</span>
+
+        <h1>
+            Get paid faster.  
+            <span>Manage invoices professionally.</span>
+        </h1>
+
+        <p>
+            Create invoices, send reminders, track payments, and manage clients —
+            all in one powerful, secure platform built for freelancers and businesses.
+        </p>
+
+        <div class="hero-actions">
+            <a href="{{ url_for('register_page') }}" class="btn primary large">
+                Start Free
+            </a>
+            <a href="{{ url_for('login_page') }}" class="btn outline large">
+                Sign In
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div>
+                <h3>10K+</h3>
+                <p>Invoices sent</p>
+            </div>
+            <div>
+                <h3>99.9%</h3>
+                <p>Uptime</p>
+            </div>
+            <div>
+                <h3>Secure</h3>
+                <p>Encrypted data</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="glass-card">
+            <h4>Invoice #INV-2026</h4>
+            <p>Client: John Doe</p>
+            <p>Status: <span class="paid">Paid</span></p>
+            <strong>$1,200.00</strong>
+        </div>
+    </div>
+</header>
+
+================= FEATURES =================
+<section class="features">
+    <h2>Everything you need to run your billing</h2>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="fa-solid fa-file-invoice"></i>
+            <h3>Invoice Creation</h3>
+            <p>Create professional invoices in seconds.</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-bell"></i>
+            <h3>Smart Reminders</h3>
+            <p>Automatically remind clients before due dates.</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Payment Tracking</h3>
+            <p>Track paid, pending, and overdue invoices.</p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Secure & Reliable</h3>
+            <p>Your data is protected with industry standards.</p>
+        </div>
+    </div>
+</section>
+
+================= CTA =================
+<section class="cta">
+    <h2>Start invoicing smarter today</h2>
+    <p>No credit card required. Free forever plan available.</p>
+
+    <a href="{{ url_for('register_page') }}" class="btn primary large">
+        Create Free Account
+    </a>
+</section>
+
+================= FOOTER =================
+<footer class="footer">
+    <p>&copy; {{ current_year }} Business Essential. All rights reserved.</p>
+</footer>
+
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome · Business Essential</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/entry.css') }}">
+    <link rel="manifest" href="/static/manifest.json">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='media/app logo.png') }}"/>
+
+</head>
+<body>
+
+<div class="intro-wrapper">
+    <div class="intro-card active">
+        <h1>Invoice smarter</h1>
+        <p>Create professional invoices in seconds.</p>
+    </div>
+
+    <div class="intro-card">
+        <h1>Get paid faster</h1>
+        <p>Automated reminders and tracking.</p>
+    </div>
+
+    <div class="intro-card">
+        <h1>Stay in control</h1>
+        <p>Your business finances, simplified.</p>
+    </div>
+
+    <div class="controls">
+        <button id="nextBtn">Continue</button>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/entry.js') }}"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome · Business Essential</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-1: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --gradient-2: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            --gradient-3: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: white;
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .intro-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            height: 85vh;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background: var(--gradient-1);
+            transition: var(--transition);
+        }
+
+        .logo {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo path {
+            fill: white;
+        }
+
+        .slides-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .intro-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .intro-card.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 10;
+        }
+
+        .intro-card.prev {
+            transform: translateX(-100%);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .intro-card.active h1 {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+
+        p {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+            max-width: 80%;
+            line-height: 1.6;
+        }
+
+        .intro-card.active p {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.4s;
+        }
+
+        .controls {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+            margin-bottom: 2rem;
+        }
+
+        .dots {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .dot::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: white;
+            transition: width 0.5s ease;
+        }
+
+        .dot.active::after {
+            width: 100%;
+        }
+
+        #nextBtn {
+            background: white;
+            color: #2563eb;
+            border: none;
+            padding: 0.9rem 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        #nextBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #nextBtn:active {
+            transform: translateY(0);
+        }
+
+        #nextBtn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            z-index: -1;
+        }
+
+        #nextBtn:hover::after {
+            transform: translateX(100%);
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro-wrapper {
+                height: 90vh;
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 2.1rem;
+            }
+            
+            p {
+                font-size: 1.1rem;
+                max-width: 90%;
+            }
+            
+            #nextBtn {
+                padding: 0.8rem 2.2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-wrapper">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        
+        <div class="slides-container">
+            <div class="intro-card active" style="background: var(--gradient-1);">
+                <h1>Invoice smarter</h1>
+                <p>Create professional invoices in seconds with our intuitive interface and customizable templates.</p>
+            </div>
+            
+            <div class="intro-card" style="background: var(--gradient-2);">
+                <h1>Get paid faster</h1>
+                <p>Automated reminders and real-time tracking ensure you never miss a payment again.</p>
+            </div>
+            
+            <div class="intro-card" style="background: var(--gradient-3);">
+                <h1>Stay in control</h1>
+                <p>Your business finances, simplified with powerful insights and reporting tools.</p>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+            <button id="nextBtn">Continue</button>
+        </div>
+        
+        <div class="particles" id="particles"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/entry.js') }}"></script>
+</body>
+</html>
 
