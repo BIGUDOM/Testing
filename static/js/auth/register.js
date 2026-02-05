@@ -3,6 +3,7 @@ const userDiv = document.getElementById("userbase");
 const custDiv = document.getElementById("custbase");
 const verifyDiv = document.getElementById("verify");
 const completeCustDiv = document.getElementById("completecust");
+const scrollIndicator = document.getElementById("scrollIndicator");
 
 /* ================= FORMS ================= */
 const userForm = document.getElementById("userForm");
@@ -508,4 +509,12 @@ completeCustForm.addEventListener("submit", async function(e) {
         console.error("Error completing profile:", error);
         showErrorModal("An error occurred while completing your profile.");
     }
+    /* ---------- SCROLL TO TOP ---------- */
+    window.addEventListener("scroll", () => {
+        scrollIndicator?.classList.toggle("visible", window.scrollY > 300);
+    });
+
+    scrollIndicator?.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 });
