@@ -1,4 +1,8 @@
-  document.addEventListener('DOMContentLoaded', () => {
+// Skip intro forever if already seen
+if (localStorage.getItem("intro_seen")) {
+    window.location.href = "/login";
+}
+document.addEventListener('DOMContentLoaded', () => {
             // DOM Elements
             const cards = document.querySelectorAll('.intro-card');
             const dots = document.querySelectorAll('.dot');
