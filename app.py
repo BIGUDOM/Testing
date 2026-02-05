@@ -42,9 +42,9 @@ app.config.update(
 # ==========================
 APP_LOGO_URL = os.path.join('static', 'media', 'app logo.png')
 SECURITY_URL = "https://yourapp.com/security-settings"
-DASHBOARD_URL = "https://yourapp.com/dashboard"
+DASHBOARD_URL = "https://testing-7b79.onrender.com/dashboard"
 
-RP_ID ='localhost'
+RP_ID ='testing-7b79.onrender.com'
 RP_NAME = 'Bussiness Essential'
 @app.route("/passkey/register/options", methods=['POST'])
 def register_option():
@@ -97,7 +97,7 @@ def register_verify():
         credential=data,
         expected_challenge=base64url_to_bytes(challenge),
         expected_rp_id=RP_ID,
-        expected_origin='http://localhost:5000',
+        expected_origin='https://testing-7b79.onrender.com/',
         require_user_verification=True,
     )
 
@@ -185,7 +185,7 @@ def auth_verify():
         credential=data,
         expected_challenge=base64url_to_bytes(challenge),
         expected_rp_id=RP_ID,
-        expected_origin='http://localhost:5000',
+        expected_origin='https://testing-7b79.onrender.com/',
         credential_public_key=base64url_to_bytes(public_key),
         credential_current_sign_count=sign_count,
         require_user_verification=True,
@@ -1356,4 +1356,5 @@ def savepassword():
 
 if __name__ == "__main__":
     app.run()
+
 
